@@ -320,8 +320,35 @@
   }
 
   /* ---------- mobile nav ---------- */
-  $("navBurger").addEventListener("click", () => $("navLinks").classList.toggle("open"));
-  document.querySelectorAll("#navLinks a").forEach(a => a.addEventListener("click", () => $("navLinks").classList.remove("open")));
+  const burger = $("navBurger"), navLinks = $("navLinks");
+  function setMenu(open) {
+    navLinks.classList.toggle("open", open);
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  burger.addEventListener("click", (e) => { e.stopPropagation(); setMenu(!navLinks.classList.contains("open")); });
+  /* CV opens in a new tab: close the menu but let the link do its job */
+  navLinks.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("click", (e) => { if (!e.target.closest("#nav")) setMenu(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+  matchMedia("(min-width:821px)").addEventListener("change", (m) => { if (m.matches) setMenu(false); });
+
+  /* in-page anchors must clear the sticky header */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!id || id === "admin" || id.startsWith("case-")) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    if (document.body.classList.contains("viewing-case") && !id.startsWith("cps-")) closeCase();
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - ($("nav").offsetHeight + 12);
+    window.scrollTo({ top, behavior: "smooth" });
+    history.replaceState(null, "", "#" + id);
+  });
 
   render();
   requestAnimationFrame(() => requestAnimationFrame(() => {
