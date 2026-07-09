@@ -73,3 +73,4 @@ any of these can be bolted on later without touching the design.
 GitHub Pages: Settings → Pages → Custom domain + a CNAME record at your
 registrar. Netlify/Vercel: import the same folder/repo, add domain there.
 Zero changes to the site.
+Deployment refresh.
