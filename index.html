@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himanshu Shekhar — Portfolio</title>
+  <meta name="description" content="B2B Sales Transformation · Commercial Excellence · Go-to-Market Strategy">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230A0A0A'/><text x='50' y='63' font-size='38' text-anchor='middle' fill='%23F7F5F1' font-family='Arial' font-weight='bold'>HS</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="fontLink" rel="stylesheet" href="">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Custom cursor dot/circle (desktop only; native arrow stays visible on non-clickables) -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
+
+  <!-- ======================= HEADER ======================= -->
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" data-cursor="Top">
+      <span class="nav-mono" id="navMono">HS</span>
+      <span class="nav-name" id="navName">Himanshu Shekhar</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#work" id="lnkCases" data-cursor="View"></a>
+      <a href="#about" id="lnkAbout" data-cursor="Read"></a>
+      <a href="#experience" id="lnkExp" data-cursor="Read"></a>
+      <a href="#credentials" id="lnkCred" data-cursor="Read"></a>
+      <a href="#" id="lnkCv" data-cursor="Open CV" target="_blank" rel="noopener"></a>
+      <a href="#contact" id="lnkContact" class="nav-cta" data-cursor="Contact"></a>
+    </nav>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="hero">
+      <div class="hero-shapes" aria-hidden="true">
+        <div class="shape shape-disc"></div>
+        <div class="shape shape-slab"></div>
+        <div class="shape shape-notch"></div>
+      </div>
+      <div class="hero-inner">
+        <p class="eyebrow reveal" id="heroEyebrow"></p>
+        <h1 class="hero-headline reveal" id="heroHeadline"></h1>
+        <p class="hero-subline reveal" id="heroSubline"></p>
+        <div class="hero-ctas reveal">
+          <a href="#work" class="btn btn-solid" id="heroCta1" data-cursor="View"></a>
+          <a href="#" id="heroCv" class="btn btn-line" data-cursor="Open CV" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <div class="hero-stats" id="heroStats"></div>
+    </section>
+
+    <!-- ======================= CASES ======================= -->
+    <section class="section work" id="work">
+      <div class="section-head reveal">
+        <span class="section-no">01</span><span class="section-tag" id="tagCases"></span>
+      </div>
+      <div class="work-grid" id="workGrid"></div>
+    </section>
+
+    <!-- ======================= ABOUT ======================= -->
+    <section class="section aboutx" id="about">
+      <div class="section-head reveal">
+        <span class="section-no">02</span><span class="section-tag" id="tagAbout"></span>
+      </div>
+      <div class="abx-hero">
+        <div class="abx-text reveal">
+          <h2 id="abxHeadline"></h2>
+          <p id="abxStory"></p>
+        </div>
+        <div class="abx-photo reveal" id="abxPhotoWrap"></div>
+      </div>
+      <div class="abx-cards" id="abxCards"></div>
+      <div class="abx-summary reveal" id="abxSummaryWrap">
+        <h3 id="abxSummaryTitle"></h3>
+        <p id="abxSummary"></p>
+      </div>
+      <div class="abx-gallery" id="abxGallery"></div>
+    </section>
+
+    <!-- ======================= EXPERIENCE ======================= -->
+    <section class="section experience" id="experience">
+      <div class="section-head reveal">
+        <span class="section-no">03</span><span class="section-tag" id="tagExp"></span>
+      </div>
+      <div class="exp-list" id="expList"></div>
+    </section>
+
+    <!-- ======================= CREDENTIALS ======================= -->
+    <section class="section credentials" id="credentials">
+      <div class="section-head reveal">
+        <span class="section-no">04</span><span class="section-tag" id="tagCred"></span>
+      </div>
+      <div class="cred-grid">
+        <div class="cred-col reveal"><h3 id="hEdu"></h3><div id="credEdu"></div></div>
+        <div class="cred-col reveal"><h3 id="hAch"></h3><ul id="credAch" class="cred-ul"></ul>
+          <h3 style="margin-top:2.2rem" id="hLang"></h3><div id="credLang" class="tag-row"></div></div>
+        <div class="cred-col reveal"><h3 id="hSkills"></h3><div id="credSkills" class="tag-row"></div></div>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="section contact" id="contact">
+      <div class="section-head reveal">
+        <span class="section-no">05</span><span class="section-tag" id="tagContact"></span>
+      </div>
+      <h2 class="contact-line reveal" id="contactLine"></h2>
+      <div class="contact-links reveal" id="contactLinks"></div>
+    </section>
+  </main>
+
+  <!-- ======================= CASE PAGE (internal) ======================= -->
+  <div class="casepage" id="casePage" hidden>
+    <div class="casepage-inner" id="casePageInner"></div>
+  </div>
+
+  <footer class="footer">
+    <span id="footerName"></span>
+    <span class="footer-right"><span id="footerNote"></span> · <a href="#admin" id="adminLink" data-cursor="Login"></a></span>
+  </footer>
+
+  <div id="adminRoot"></div>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
