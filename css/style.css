@@ -82,6 +82,7 @@ body.cursor-hide, body.cursor-hide *{cursor:none!important}
 /* ============================ NAV ============================ */
 .nav{
   position:fixed; top:0; left:0; right:0; z-index:100;
+  isolation:isolate;
   display:flex; justify-content:space-between; align-items:center;
   padding:1.1rem 4vw;
   backdrop-filter:blur(14px);
@@ -117,13 +118,36 @@ body.cursor-hide, body.cursor-hide *{cursor:none!important}
 .nav-burger span{position:absolute; left:4px; right:4px; height:2px; background:var(--ink); transition:.3s}
 .nav-burger span:first-child{top:8px}.nav-burger span:last-child{top:16px}
 @media(max-width:820px){
+  /* the header uses backdrop-filter, which traps position:fixed children —
+     so the mobile menu is an absolute dropdown panel anchored under the bar */
+  .nav{padding:.85rem 5vw}
   .nav-links{
-    position:fixed; inset:0; top:60px; flex-direction:column; justify-content:center;
-    gap:2.2rem; font-size:1.4rem; background:var(--bg);
-    transform:translateY(-110%); transition:transform .4s var(--ease);
+    position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch; gap:0; font-size:1.02rem;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow);
+    padding:.4rem 5vw 1.2rem;
+    opacity:0; visibility:hidden; transform:translateY(-10px);
+    transition:opacity .28s var(--ease), transform .28s var(--ease), visibility .28s;
+    max-height:calc(100svh - 64px); overflow-y:auto;
   }
-  .nav-links.open{transform:none}
+  .nav-links.open{opacity:1; visibility:visible; transform:none}
+  .nav-links a{
+    padding:1rem .2rem; border-bottom:1px solid var(--line);
+    color:var(--ink); font-weight:600; min-height:48px; display:flex; align-items:center;
+  }
+  .nav-links a::after{display:none}
+  .nav-links a:last-child{border-bottom:0}
+  /* the Contact pill returns to a plain row item in the dropdown */
+  .nav-links .nav-cta{
+    border:0; border-radius:0; padding:1rem .2rem; background:none;
+    color:var(--accent)!important; font-weight:700;
+  }
+  .nav-links .nav-cta:hover{background:none; color:var(--accent)!important}
   .nav-burger{display:block}
+  .nav-burger span{transition:transform .3s var(--ease), opacity .2s}
+  .nav-burger.open span:first-child{transform:translateY(4px) rotate(45deg)}
+  .nav-burger.open span:last-child{transform:translateY(-4px) rotate(-45deg)}
 }
 
 /* ============================ HERO ============================ */
@@ -528,3 +552,21 @@ body.viewing-case main{display:none}
 .cp-figs figcaption{font-family:var(--font-mono); font-size:.78rem; color:var(--mute); padding:.6rem .9rem}
 .cp-foot{margin-top:3.5rem; padding-top:2rem; border-top:1px solid var(--line);
   display:flex; gap:1rem; flex-wrap:wrap; align-items:center}
+
+
+/* ---------- mobile polish ---------- */
+@media(max-width:820px){
+  .casepage-inner{padding:6.5rem 6vw 4rem}
+  .cp-flow{gap:.4rem}
+  .cp-flow .cp-arrow{display:none}
+  .cp-flow a{font-size:.68rem; padding:.35rem .75rem}
+  .cp-foot{flex-direction:column; align-items:stretch}
+  .cp-foot .btn{justify-content:center}
+  .abx-shot{width:200px}
+  .hero{padding-top:8rem}
+  .hero-ctas .btn{flex:1; justify-content:center}
+}
+@media(max-width:480px){
+  .abx-shot{width:170px}
+  .nav-mono{width:34px; height:34px; font-size:.76rem}
+}
